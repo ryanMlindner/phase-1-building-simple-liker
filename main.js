@@ -4,7 +4,21 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+const hearts = document.getElementsByClassName('like-glyph');
+for(const elem in hearts){
+  elem.addEventListener('click', heartClick(elem));
+}
 
+serverResponse = mimicServerCall()
+  .then(success())
+function heartClick(targetHeart) {  
+  if (serverResponse === "Pretend remote server notified of action!") {
+    if ("activated-heart" in targetHeart.classList) {
+      targetHeart.classList.remove("activated-heart");
+    }
+    else targetHeart.classList.add("activated-heart");
+  }
+}
 
 
 //------------------------------------------------------------------------------
