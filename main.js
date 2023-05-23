@@ -15,7 +15,14 @@ function heartClick(event) {
   mimicServerCall()
   .then(() => {
     //TODO if checks and toggles for .activated-heart
-    event.target.innerHTML = FULL_HEART;
+    if (event.target.innerHTML === EMPTY_HEART) {
+      event.target.innerHTML = FULL_HEART;
+      event.target.classList.add("activated-heart");
+    }
+    else {
+      event.target.innerHTML = EMPTY_HEART;
+      event.target.classList.remove("activated-heart");
+    }
   })
   .catch((response) => {
     errorMessage.classList.remove("hidden");
