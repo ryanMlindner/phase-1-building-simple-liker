@@ -19,7 +19,10 @@ function heartClick(event) {
   })
   .catch((response) => {
     errorMessage.classList.remove("hidden");
-    errorMessage.append(response);
+    errorMessage.querySelector("#modal-message").innerHTML = response;
+    setTimeout(() => {
+      errorMessage.classList.add("hidden");
+    }, 3000);
   })
 }
 
