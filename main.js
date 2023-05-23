@@ -3,21 +3,24 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+console.log("start script");
+const errorMessage = document.querySelector("#modal")
+const hearts = document.querySelectorAll('span.like-glyph');
+hearts.forEach(heart => {
+  heart.addEventListener('click', heartClick);
+  console.log("this happened");
+})
 
-const hearts = document.getElementsByClassName('like-glyph');
-for(const elem in hearts){
-  elem.addEventListener('click', heartClick(elem));
-}
-
-serverResponse = mimicServerCall()
-  .then(success())
-function heartClick(targetHeart) {  
-  if (serverResponse === "Pretend remote server notified of action!") {
-    if ("activated-heart" in targetHeart.classList) {
-      targetHeart.classList.remove("activated-heart");
-    }
-    else targetHeart.classList.add("activated-heart");
-  }
+function heartClick(event) {
+  mimicServerCall()
+  .then(() => {
+    //TODO if checks and toggles for .activated-heart
+    event.target.innerHTML = FULL_HEART;
+  })
+  .catch((response) => {
+    errorMessage.classList.remove("hidden");
+    errorMessage.append(response);
+  })
 }
 
 
